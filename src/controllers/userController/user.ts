@@ -30,8 +30,7 @@ const getUsersByUser = (req?: any, res?: any) => {
     if(id_usuario) {
         connUsers.query("SELECT * FROM Users WHERE id_usuario = ($1)", [id_usuario], (err: Error, result: Response, fields:any) => {
             if(err) throw err;
-            
-            res.send({result, fields});
+   
         })
     }
 }
@@ -83,10 +82,25 @@ const createUser = (req?: any, res?: any) =>{
     });
 }
 
+const login = (req?: any, res?: any) => {
+    const {email, senha} = req.body;
+
+    connUsers.query("SELECT (email, senha, tipo) from Users where email = ($1) ", [email],
+     (err: Error, result:any) => {
+        if(err) throw err;
+        // const passValidator = bcrypt.compare(senha, )
+                 
+        res.send({message: 'Logado com sucesso!', body: {
+            user: {email, senha}
+        }});
+    })
+}
+
 module.exports = {getAllUsers,
     getUserById, 
     updateUser, 
     createUser, 
     deleteUser,
-    getUserByTipo    
+    getUserByTipo,
+    login  
 }

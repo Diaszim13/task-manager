@@ -6,10 +6,10 @@ const stats = [
 ]
 
 const getAllTasks = (req?: any, res?: any) =>{
-    connTasks.query("SELECT * FROM tasks ORDER BY id desc", (err: Error,result:Response, fields:any) => {
+    connTasks.query("SELECT * FROM tasks ORDER BY id desc", (err: Error,result:any, fields:any) => {
         if(err) throw err;
         
-        res.send(result, fields);
+        res.status(200).send(result.rows);
     })
 }
 
@@ -82,12 +82,12 @@ const deleteTask = (req?: any, res?: any) =>{
 }
 
 const createTask = (req?: any, res?: any) =>{
-    const {titulo, descricao, tipo, categoria, id_usuario} = req.body;
-    console.log(titulo, descricao, tipo, categoria, id_usuario)
-    connTasks.query("INSERT INTO tasks (titulo, descricao, tipo, categoria, id_usuario) values ($1,$2,$3,$4,$5)", [titulo, descricao, tipo, categoria, id_usuario], (err: Error, result:any) => {
+    const {titulo, descricao, tipo, categoria} = req.body;
+    console.log(titulo, descricao, tipo, categoria)
+    connTasks.query("INSERT INTO tasks (titulo, descricao, tipo, categoria) values ($1,$2,$3,$4)", [titulo, descricao, tipo, categoria], (err: Error, result:any) => {
         if(err) throw err;
 
-        res.send({result}, stats[0]);
+        res.send({result});
     });
 }
 

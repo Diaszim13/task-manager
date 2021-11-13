@@ -6,5 +6,5 @@ export interface tasks {
     descricao: string,
     tipo: number,
     categoria: number,
-    usuario: user
+    // usuario: user
 }
