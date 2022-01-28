@@ -18,5 +18,5 @@ router.route('/:id').get(getUserById).patch(updateUser).delete(deleteUser);
 
 router.route('/:tipo').get(getUserByTipo);
 
-router.route('/login').get(login)
+router.route('/login').post(login)
 module.exports = router;

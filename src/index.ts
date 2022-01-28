@@ -7,6 +7,7 @@ const users = require('./routes/users');
 const app:Application = express();
 
 const PORT = process.env.PORT || 8001;
+// const PORT = 8001;
 const corsOpts = {
     origin: 'http://localhost:4200', // client (todo mundo pode acessar)
 optionsSuccessStatus: 200

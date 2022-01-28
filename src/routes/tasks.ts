@@ -5,7 +5,8 @@ const {getAllTasks,
        createTask,
         deleteTask,
         getTaskByCategoria,
-        getTaskByTipo
+        getTaskByTipo,
+        getTaskAndUsers
 
 } = require('../controllers/tasksController/tasks')
 
@@ -24,5 +25,7 @@ router.route('/:categoria').get(getTaskByCategoria);
 
 router.route('/:tipo').get(getTaskByTipo);
 
+//select view form users 
+router.route('/taskAndUser/:id').get(getTaskAndUsers);
 
 module.exports = router

@@ -47,6 +47,7 @@ const getTaskByCategoria = (req?: any, res?:any ) => {
         })
     }
 }
+
 const getTaskByTipo = (req?: any, res?:any ) => {
     const tipo = req.params.tipo;
     if(tipo) {
@@ -91,11 +92,25 @@ const createTask = (req?: any, res?: any) =>{
     });
 }
 
+const getTaskAndUsers = (req?: any, res?: any) => {
+    const id = req.params.id;
+
+    connTasks.query("select * from public.get_tasks g where g.id_usuario = ($1)", [id], (err: Error, result: any) => {
+        if(err) throw err;
+
+        res.send({result});
+    })
+}
+// const tasksData = (req?: any, res?: any) => {
+//     const id = req.params();
+// }
+
 module.exports = {getAllTasks,
     getTaskById, 
     updateTask, 
     createTask, 
     deleteTask,
     getTaskByCategoria,
-    getTaskByTipo    
+    getTaskByTipo,
+    getTaskAndUsers    
 }
