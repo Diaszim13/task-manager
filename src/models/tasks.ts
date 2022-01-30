@@ -1,4 +1,3 @@
-import { user } from "./user";
 
 export interface tasks {
     id: number,
@@ -6,5 +5,6 @@ export interface tasks {
     descricao: string,
     tipo: number,
     categoria: number,
+    dia_da_semana?: string
     // usuario: user
 }

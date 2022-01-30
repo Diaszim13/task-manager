@@ -105,6 +105,16 @@ const getTaskAndUsers = (req?: any, res?: any) => {
 //     const id = req.params();
 // }
 
+const numOfTaksByDay = (req?: any, res?: any) => {
+    const day = req.params.dia;
+
+    connTasks.query("SELECT * FROM get_num_tasks_day($1)", [day], (err?: Error, result?: any) => {
+        if(err) throw err;
+
+        res.send({result});
+    })
+}
+
 module.exports = {getAllTasks,
     getTaskById, 
     updateTask, 
@@ -112,5 +122,6 @@ module.exports = {getAllTasks,
     deleteTask,
     getTaskByCategoria,
     getTaskByTipo,
-    getTaskAndUsers    
+    getTaskAndUsers,
+    numOfTaksByDay    
 }
